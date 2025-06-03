@@ -10,7 +10,7 @@ const GroupsForm = ({ group, handleChange }) => {
         <>
             <Input name='name' label='Название' value={group.name} onChange={handleChange}
                 type='text' required />
-            <Select values={faculties} name='facultyId' label='Товары' value={group.facultyId} onChange={handleChange}
+            <Select values={faculties} name='facultyId' label='Факультет' value={group.facultyId} onChange={handleChange}
                 required />
         </>
     );
