@@ -7,7 +7,8 @@ import './index.css';
 import ErrorPage from './pages/ErrorPage.jsx';
 import Homepage from './pages/Homepage.jsx';
 import EventAdminPage from './pages/EventAdminPage.jsx';
-import Faculties from './components/faculties/table/Faculties.jsx';
+import FacultiesPage from './pages/FacultiesPage.jsx';
+import GroupsPage from './pages/GroupsPage.jsx';
 
 const routes = [
   {
@@ -21,7 +22,11 @@ const routes = [
   },
   {
     path: '/faculties',
-    element: <Faculties />
+    element: <FacultiesPage />
+  },
+  {
+    path: '/groups',
+    element: <GroupsPage />
   },
 ];
 

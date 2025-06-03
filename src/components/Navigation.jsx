@@ -7,7 +7,7 @@ const Navigation = () => {
         <header className="text-center">
              <Navbar bg="dark" data-bs-theme="dark">
                 <Container fluid>
-                <Navbar.Brand>Navbar</Navbar.Brand>
+                <Navbar.Brand>Университет. Культурно-массовые мероприятия</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link as={Link} to="/">Главная</Nav.Link>
                     <Nav.Link as={Link} to="/">Мероприятия</Nav.Link>
@@ -20,7 +20,7 @@ const Navigation = () => {
                         <Dropdown.Menu>
                             <Dropdown.Item as={Link} to="/event-admin">Мероприятия</Dropdown.Item>
                             <Dropdown.Item as={Link} to="/faculties">Факультеты</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/groups">Группы</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Nav>

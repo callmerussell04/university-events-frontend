@@ -1,50 +1,50 @@
 import { Button } from 'react-bootstrap';
 import ModalConfirm from '../../modal/ModalConfirm.jsx';
 import ModalForm from '../../modal/ModalForm.jsx';
-import useFacultiesDeleteModal from '../hooks/FacultiesDeleteModalHook.js';
-import useFacultiesFormModal from '../hooks/FacultiesFormModalHook.js';
-import useFaculties from '../hooks/FacultiesHook.js';
-import FacultiesTable from './FacultiesTable.jsx';
-import FacultiesTableRow from './FacultiesTableRow.jsx';
-import FacultiesForm from '../form/FacultiesForm.jsx';
+import useGroupsDeleteModal from '../hooks/GroupsDeleteModalHook.js';
+import useGroupsFormModal from '../hooks/GroupsFormModalHook.js';
+import useGroups from '../hooks/GroupsHook.js';
+import GroupsTable from './GroupsTable.jsx';
+import GroupsTableRow from './GroupsTableRow.jsx';
+import GroupsForm from '../form/GroupsForm.jsx';
 import PropTypes from 'prop-types';
 
-const Faculties = () => {
+const Groups = () => {
 
-    const { faculties, handleFacultiesChange } = useFaculties();
+    const { groups, handleGroupsChange } = useGroups();
 
     const {
         isDeleteModalShow,
         showDeleteModal,
         handleDeleteConfirm,
         handleDeleteCancel,
-    } = useFacultiesDeleteModal(handleFacultiesChange);
+    } = useGroupsDeleteModal(handleGroupsChange);
 
     const {
         isFormModalShow,
         isFormValidated,
         showFormModal,
-        currentFaculty,
-        handleFacultyChange,
+        currentGroup,
+        handleGroupChange,
         handleFormSubmit,
         handleFormClose,
-    } = useFacultiesFormModal(handleFacultiesChange);
+    } = useGroupsFormModal(handleGroupsChange);
 
     return (
         <>
-            <FacultiesTable>
+            <GroupsTable>
                 {
-                    faculties.map((faculty, index) =>
-                        <FacultiesTableRow key={faculty.id}
-                            index={index} faculty={faculty}
-                            onDelete={() => showDeleteModal(faculty.id)}
-                            onEdit={() => showFormModal(faculty.id)}
+                    groups.map((group, index) =>
+                        <GroupsTableRow key={group.id}
+                            index={index} group={group}
+                            onDelete={() => showDeleteModal(group.id)}
+                            onEdit={() => showFormModal(group.id)}
                         />)
                 }
-            </FacultiesTable>
+            </GroupsTable>
             <div className="d-flex justify-content-center">
                 <Button variant='primary' className="fw-bold px-5 mb-5" onClick={() => showFormModal()}>
-                    Добавить факультет
+                    Добавить группу
                 </Button>
             </div>
             <ModalConfirm show={isDeleteModalShow}
@@ -53,14 +53,14 @@ const Faculties = () => {
             <ModalForm show={isFormModalShow} validated={isFormValidated}
                 onSubmit={handleFormSubmit} onClose={handleFormClose}
                 title='Редактирование'>
-                <FacultiesForm faculty={currentFaculty} handleChange={handleFacultyChange} />
+                <GroupsForm group={currentGroup} handleChange={handleGroupChange} />
             </ModalForm>
         </>
     );
 };
 
-Faculties.propTypes = {
+Groups.propTypes = {
     handleLinesChange: PropTypes.func,
 }
 
-export default Faculties;
+export default Groups;

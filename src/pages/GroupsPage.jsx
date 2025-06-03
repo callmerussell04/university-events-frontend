@@ -1,11 +1,11 @@
-import Faculties from "../components/faculties/table/Faculties";
+import Groups from "../components/groups/table/Groups";
 
 const FacultyPage = () => {
     return (
         <>
             <div className="container-lg table-responsive">
-                <h3>Факультеты</h3>
-                <Faculties />
+                <h3>Группы</h3>
+                <Groups />
             </div>
         </>
     );
