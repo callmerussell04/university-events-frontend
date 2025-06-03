@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Input from '../../input/Input.jsx';
+import Select from '../../input/Select.jsx';
 import useFaculties from '../../faculties/hooks/FacultiesHook.js';
 
 const GroupsForm = ({ group, handleChange }) => {

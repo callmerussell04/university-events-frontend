@@ -9,6 +9,7 @@ import Homepage from './pages/Homepage.jsx';
 import EventAdminPage from './pages/EventAdminPage.jsx';
 import FacultiesPage from './pages/FacultiesPage.jsx';
 import GroupsPage from './pages/GroupsPage.jsx';
+import LocationsPage from './pages/LocationsPage.jsx';
 
 const routes = [
   {
@@ -27,6 +28,10 @@ const routes = [
   {
     path: '/groups',
     element: <GroupsPage />
+  },
+  {
+    path: '/locations',
+    element: <LocationsPage />
   },
 ];
 
