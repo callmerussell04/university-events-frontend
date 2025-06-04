@@ -17,8 +17,8 @@ const useEventsForm = (id, eventsChangeHandle) => {
     const getEventObject = (formData) => {
         const name = formData.name;
         const status = formData.status;
-        const startDateTime = formData.startDateTime;
-        const endDateTime = formData.endDateTime;
+        const startDateTime = formData.startDateTime.replace('T', ' ');
+        const endDateTime = formData.endDateTime.replace('T', ' ');
         const organizer = formData.organizer;
         const locationId = parseInt(formData.locationId, 10);
         return {

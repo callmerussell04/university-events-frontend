@@ -10,7 +10,13 @@ const Select = ({
             <Form.Select name={name || ''} value={value || ''} onChange={onChange} {...rest}>
                 <option value=''>Выберите значение</option>
                 {
-                    values.map((type) => <option key={type.id} value={type.id}>{type.name}</option>)
+                     values.map((item, index) => {
+                        if (typeof item === 'string') {
+                            return <option key={index} value={item}>{item}</option>;
+                        } else {
+                            return <option key={item.id} value={item.id}>{item.name}</option>;
+                        }
+                    })
                 }
             </Form.Select>
         </Form.Group>

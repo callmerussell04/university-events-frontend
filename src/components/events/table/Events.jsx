@@ -48,7 +48,7 @@ const Events = () => {
             </EventsTable>
             <div className="d-flex justify-content-center">
                 <Button variant='primary' className="fw-bold px-5 mb-5" onClick={() => showFormModal()}>
-                    Добавить группу
+                    Добавить мероприятие
                 </Button>
             </div>
             <PaginationComponent totalPages={totalPages} currentPage={page} handlePageChange={setPage} />
