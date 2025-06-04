@@ -9,7 +9,7 @@ import EventsTableRow from './EventsTableRow.jsx';
 import EventsForm from '../form/EventsForm.jsx';
 import PropTypes from 'prop-types';
 import PaginationComponent from '../../pagination/Pagination.jsx';
-import {useNameFilter, useLocationFilter} from '../hooks/EventsFilterHook.js';
+import {useNameFilter, useStatusFilter, useLocationFilter} from '../hooks/EventsFilterHook.js';
 import Select from '../../input/Select.jsx';
 import usePagination from '../../pagination/PaginationHook.js';
 import { useState } from 'react';
@@ -26,9 +26,13 @@ const Events = () => {
         setSearchInput(event.target.value);
     };
 
+    const {currentStatusFilter, handleStatusFilterChange} = useStatusFilter();
+
+    const statuses = ["Запланировано", "В процессе", "Завершено", "Отменено"];
+
     const { locations, currentLocationFilter, handleLocationFilterChange } = useLocationFilter();
 
-    const { events, handleEventsChange, totalPages } = useEvents(currentPage, currentNameFilter, currentLocationFilter);
+    const { events, handleEventsChange, totalPages } = useEvents(currentPage, currentNameFilter, currentStatusFilter, currentLocationFilter);
 
     const {
         isDeleteModalShow,
@@ -49,11 +53,13 @@ const Events = () => {
 
     return (
         <>
-            <Form className='m-0 rounded-bottom d-flex' onSubmit={handleNameFilterChange}>
+            <div className='d-flex'>
                 <Form.Control type="text" name='name' value={searchInput} onChange={handleInputChange} placeholder="Поиск" />
-                <Button variant='primary' className='m-0 ms-2' type='submit'>Найти</Button>
-            </Form>
-            <Select className='mt-2' values={locations} label='Фильтр по помещениям'
+                <Button variant='primary' className='m-0 ms-2' onClick={() => handleNameFilterChange(searchInput)}>Найти</Button>
+            </div>
+            <Select className='mt-2' values={statuses} label='Фильтр по статусу'
+                    value={currentStatusFilter} onChange={handleStatusFilterChange} />
+            <Select className='mt-2' values={locations} label='Фильтр по помещению'
                     value={currentLocationFilter} onChange={handleLocationFilterChange} />
             <EventsTable>
                 {

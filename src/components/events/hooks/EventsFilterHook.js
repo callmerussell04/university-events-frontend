@@ -7,10 +7,9 @@ const useNameFilter = () => {
 
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const handleNameFilterChange = (formData) => {
-        const name = formData.name;
+    const handleNameFilterChange = (name) => {
         if (name) {
-            searchParams.set(filterName, event.target.value);
+            searchParams.set(filterName, name);
         } else {
             searchParams.delete(filterName);
         }
@@ -20,6 +19,27 @@ const useNameFilter = () => {
     return {
         currentNameFilter: searchParams.get(filterName) || '',
         handleNameFilterChange,
+    };
+};
+
+const useStatusFilter = () => {
+    const filterName = 'status';
+
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const handleStatusFilterChange = (event) => {
+        const status = event.target.value;
+        if (status) {
+            searchParams.set(filterName, event.target.value);
+        } else {
+            searchParams.delete(filterName);
+        }
+        setSearchParams(searchParams);
+    };
+
+    return {
+        currentStatusFilter: searchParams.get(filterName) || '',
+        handleStatusFilterChange,
     };
 };
 
@@ -47,4 +67,4 @@ const useLocationFilter = () => {
     };
 };
 
-export { useNameFilter, useLocationFilter };
+export { useNameFilter, useStatusFilter, useLocationFilter };
