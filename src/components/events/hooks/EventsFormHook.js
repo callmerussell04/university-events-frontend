@@ -45,17 +45,19 @@ const useEventsForm = (id, eventsChangeHandle) => {
         e.preventDefault();
         e.stopPropagation();
         const body = getEventObject(event);
-        if (form.checkValidity()) {
-            if (id === undefined) {
-                await EventsApiService.create(body);
-            } else {
-                await EventsApiService.update(id, body);
+        if(Date.parse(body.startDateTime) < Date.parse(body.endDateTime)) {
+            if (form.checkValidity()) {
+                if (id === undefined) {
+                    await EventsApiService.create(body);
+                } else {
+                    await EventsApiService.update(id, body);
+                }
+                if (eventsChangeHandle) eventsChangeHandle();
+                toast.success('Элемент успешно сохранен', { id: 'EventsTable' });
+                return true;
             }
-            if (eventsChangeHandle) eventsChangeHandle();
-            toast.success('Элемент успешно сохранен', { id: 'EventsTable' });
-            return true;
+            setValidated(true);
         }
-        setValidated(true);
         return false;
     };
 

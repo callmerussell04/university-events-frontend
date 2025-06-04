@@ -18,19 +18,19 @@ const routes = [
     element: <Homepage />
   },
   {
-    path: '/event-admin',
+    path: '/admin/events',
     element: <EventAdminPage />
   },
   {
-    path: '/faculties',
+    path: '/admin/faculties',
     element: <FacultiesPage />
   },
   {
-    path: '/groups',
+    path: '/admin/groups',
     element: <GroupsPage />
   },
   {
-    path: '/locations',
+    path: '/admin/locations',
     element: <LocationsPage />
   },
 ];

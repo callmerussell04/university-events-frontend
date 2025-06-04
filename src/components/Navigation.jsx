@@ -18,10 +18,10 @@ const Navigation = () => {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item as={Link} to="/event-admin">Мероприятия</Dropdown.Item>
-                            <Dropdown.Item as={Link} to="/faculties">Факультеты</Dropdown.Item>
-                            <Dropdown.Item as={Link} to="/groups">Группы</Dropdown.Item>
-                            <Dropdown.Item as={Link} to="/locations">Помещения</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/admin/events">Мероприятия</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/admin/faculties">Факультеты</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/admin/groups">Группы</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/admin/locations">Помещения</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Nav>

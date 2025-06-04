@@ -1,4 +1,4 @@
-import { Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import ModalConfirm from '../../modal/ModalConfirm.jsx';
 import ModalForm from '../../modal/ModalForm.jsx';
 import useEventsDeleteModal from '../hooks/EventsDeleteModalHook.js';
@@ -8,14 +8,27 @@ import EventsTable from './EventsTable.jsx';
 import EventsTableRow from './EventsTableRow.jsx';
 import EventsForm from '../form/EventsForm.jsx';
 import PropTypes from 'prop-types';
-import PaginationComponent from '../../Pagination.jsx';
+import PaginationComponent from '../../pagination/Pagination.jsx';
+import {useNameFilter, useLocationFilter} from '../hooks/EventsFilterHook.js';
+import Select from '../../input/Select.jsx';
+import usePagination from '../../pagination/PaginationHook.js';
 import { useState } from 'react';
 
 
 const Events = () => {
-    const [page, setPage] = useState(0);
+    const {currentPage, handlePageChange} = usePagination();
 
-    const { events, handleEventsChange, totalPages } = useEvents(page);
+    const {currentNameFilter, handleNameFilterChange} = useNameFilter();
+
+    const [searchInput, setSearchInput] = useState(currentNameFilter);
+
+    const handleInputChange = (event) => {
+        setSearchInput(event.target.value);
+    };
+
+    const { locations, currentLocationFilter, handleLocationFilterChange } = useLocationFilter();
+
+    const { events, handleEventsChange, totalPages } = useEvents(currentPage, currentNameFilter, currentLocationFilter);
 
     const {
         isDeleteModalShow,
@@ -36,6 +49,12 @@ const Events = () => {
 
     return (
         <>
+            <Form className='m-0 rounded-bottom d-flex' onSubmit={handleNameFilterChange}>
+                <Form.Control type="text" name='name' value={searchInput} onChange={handleInputChange} placeholder="Поиск" />
+                <Button variant='primary' className='m-0 ms-2' type='submit'>Найти</Button>
+            </Form>
+            <Select className='mt-2' values={locations} label='Фильтр по помещениям'
+                    value={currentLocationFilter} onChange={handleLocationFilterChange} />
             <EventsTable>
                 {
                     events.map((event, index) =>
@@ -51,7 +70,7 @@ const Events = () => {
                     Добавить мероприятие
                 </Button>
             </div>
-            <PaginationComponent totalPages={totalPages} currentPage={page} handlePageChange={setPage} />
+            <PaginationComponent totalPages={totalPages} currentPage={currentPage} handlePageChange={handlePageChange} />
             <ModalConfirm show={isDeleteModalShow}
                 onConfirm={handleDeleteConfirm} onClose={handleDeleteCancel}
                 title='Удаление' message='Удалить элемент?' />

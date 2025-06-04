@@ -8,14 +8,14 @@ import GroupsTable from './GroupsTable.jsx';
 import GroupsTableRow from './GroupsTableRow.jsx';
 import GroupsForm from '../form/GroupsForm.jsx';
 import PropTypes from 'prop-types';
-import PaginationComponent from '../../Pagination.jsx';
-import { useState } from 'react';
+import PaginationComponent from '../../pagination/Pagination.jsx';
+import usePagination from '../../pagination/PaginationHook.js';
 
 
 const Groups = () => {
-    const [page, setPage] = useState(0);
+    const {currentPage, handlePageChange} = usePagination();
 
-    const { groups, handleGroupsChange, totalPages } = useGroups(page);
+    const { groups, handleGroupsChange, totalPages } = useGroups(currentPage);
 
     const {
         isDeleteModalShow,
@@ -51,7 +51,7 @@ const Groups = () => {
                     Добавить группу
                 </Button>
             </div>
-            <PaginationComponent totalPages={totalPages} currentPage={page} handlePageChange={setPage} />
+            <PaginationComponent totalPages={totalPages} currentPage={currentPage} handlePageChange={handlePageChange} />
             <ModalConfirm show={isDeleteModalShow}
                 onConfirm={handleDeleteConfirm} onClose={handleDeleteCancel}
                 title='Удаление' message='Удалить элемент?' />

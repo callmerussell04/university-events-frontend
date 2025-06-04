@@ -1,8 +1,10 @@
-import React from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 
 const PaginationComponent = ({ totalPages, currentPage, handlePageChange }) => {
     const maxPage = 2;
+
+    if(!currentPage) currentPage = 0;
+    else currentPage = parseInt(currentPage);    
 
     const page = currentPage + 1;
     const seqFrom = Math.max(1, page - maxPage);
@@ -12,8 +14,9 @@ const PaginationComponent = ({ totalPages, currentPage, handlePageChange }) => {
         handlePageChange(pageNum);
     };
 
-    if (totalPages <= 1) return null;
-
+    if (totalPages <= 1) {
+        return null;
+    }
     const paginationItems = [];
 
     if (page > maxPage + 1) {
