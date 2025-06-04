@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import EventsApiService from '../service/EventsApiService';
 
-const useEvents = (page, nameFilter, statusFilter, locationFilter) => {
+const useEvents = (page, nameFilter, statusFilter, locationFilter, startDateFilter, endDateFilter) => {
     const [events, setEvents] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [eventsRefresh, setEventsRefresh] = useState(false);
     const handleEventsChange = () => setEventsRefresh(!eventsRefresh);
+    const clearFilters = () => {nameFilter, statusFilter, locationFilter, startDateFilter, endDateFilter = null;}
 
     const getEvents = async () => {
         let expand = `?page=${page}`;
@@ -18,6 +19,12 @@ const useEvents = (page, nameFilter, statusFilter, locationFilter) => {
         if (statusFilter) {
             expand = `${expand}&status=${statusFilter}`;
         }
+        if (startDateFilter) {
+            expand = `${expand}&startDate=${startDateFilter}`;
+        }
+        if (endDateFilter) {
+            expand = `${expand}&endDate=${endDateFilter}`;
+        }
         const data = await EventsApiService.getAll(expand);
         setEvents(data.items ?? []);
         setTotalPages(data.totalPages ?? 0);
@@ -26,12 +33,13 @@ const useEvents = (page, nameFilter, statusFilter, locationFilter) => {
     useEffect(() => {
         getEvents();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [eventsRefresh, page, nameFilter, locationFilter, statusFilter]);
+    }, [eventsRefresh, page, nameFilter, locationFilter, statusFilter, startDateFilter, endDateFilter]);
 
     return {
         events,
         handleEventsChange,
-        totalPages
+        totalPages,
+        clearFilters
     };
 };
 

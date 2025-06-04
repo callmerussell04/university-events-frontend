@@ -9,10 +9,11 @@ import EventsTableRow from './EventsTableRow.jsx';
 import EventsForm from '../form/EventsForm.jsx';
 import PropTypes from 'prop-types';
 import PaginationComponent from '../../pagination/Pagination.jsx';
-import {useNameFilter, useStatusFilter, useLocationFilter} from '../hooks/EventsFilterHook.js';
+import {useNameFilter, useStatusFilter, useLocationFilter, useDateFilter, useResetSearchParams } from '../hooks/EventsFilterHook.js';
 import Select from '../../input/Select.jsx';
 import usePagination from '../../pagination/PaginationHook.js';
 import { useState } from 'react';
+import Input from '../../input/Input.jsx';
 
 
 const Events = () => {
@@ -22,7 +23,7 @@ const Events = () => {
 
     const [searchInput, setSearchInput] = useState(currentNameFilter);
 
-    const handleInputChange = (event) => {
+    const handleSearchInputChange = (event) => {
         setSearchInput(event.target.value);
     };
 
@@ -32,7 +33,21 @@ const Events = () => {
 
     const { locations, currentLocationFilter, handleLocationFilterChange } = useLocationFilter();
 
-    const { events, handleEventsChange, totalPages } = useEvents(currentPage, currentNameFilter, currentStatusFilter, currentLocationFilter);
+    const { currentStartDateFilter, currentEndDateFilter, handleDateFilterChange } = useDateFilter();
+
+    const [startDateInput, setStartDateInput] = useState(currentStartDateFilter);
+
+    const handleStartDateInputChange = (event) => {
+        setStartDateInput(event.target.value);
+    };
+
+    const [endDateInput, setEndDateInput] = useState(currentEndDateFilter);
+
+    const handleEndDateInputChange = (event) => {
+        setEndDateInput(event.target.value);
+    };
+
+    const { events, handleEventsChange, totalPages, clearFilters } = useEvents(currentPage, currentNameFilter, currentStatusFilter, currentLocationFilter, currentStartDateFilter, currentEndDateFilter);
 
     const {
         isDeleteModalShow,
@@ -51,16 +66,33 @@ const Events = () => {
         handleFormClose,
     } = useEventsFormModal(handleEventsChange);
 
+    const resetSearchParams = useResetSearchParams();
+
     return (
         <>
             <div className='d-flex'>
-                <Form.Control type="text" name='name' value={searchInput} onChange={handleInputChange} placeholder="Поиск" />
+                <Form.Control type="text" name='name' value={searchInput} onChange={handleSearchInputChange} placeholder="Поиск" />
                 <Button variant='primary' className='m-0 ms-2' onClick={() => handleNameFilterChange(searchInput)}>Найти</Button>
             </div>
             <Select className='mt-2' values={statuses} label='Фильтр по статусу'
                     value={currentStatusFilter} onChange={handleStatusFilterChange} />
             <Select className='mt-2' values={locations} label='Фильтр по помещению'
                     value={currentLocationFilter} onChange={handleLocationFilterChange} />
+            <div className='d-flex flex-column col-4'>
+                <div className='d-flex justify-content-between'>
+                    <Input name='startDateFilter' label='С' value={startDateInput} onChange={handleStartDateInputChange}
+                                    type='datetime-local' required />
+                    <Input name='endDateFilter' label='До' value={endDateInput} onChange={handleEndDateInputChange}
+                                    type='datetime-local' required />
+                </div>
+                <Button variant='primary' className='m-0' onClick={() => handleDateFilterChange(startDateInput, endDateInput)}>Применить</Button>
+            </div>
+            <div className='d-flex justify-content-end'>
+                <Button variant='danger' className='my-2' onClick={() => {
+                        clearFilters();
+                        setSearchInput('');
+                        resetSearchParams();}}>Очистить фильтры</Button>
+            </div>
             <EventsTable>
                 {
                     events.map((event, index) =>
