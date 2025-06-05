@@ -10,6 +10,7 @@ import EventAdminPage from './pages/EventAdminPage.jsx';
 import FacultiesPage from './pages/FacultiesPage.jsx';
 import GroupsPage from './pages/GroupsPage.jsx';
 import LocationsPage from './pages/LocationsPage.jsx';
+import InvitationsPage from './pages/InvitationsPage.jsx';
 
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
   {
     path: '/admin/events',
     element: <EventAdminPage />
+  },
+  {
+    path: '/admin/invitations',
+    element: <InvitationsPage />
   },
   {
     path: '/admin/faculties',

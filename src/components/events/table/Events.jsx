@@ -47,7 +47,7 @@ const Events = () => {
         setEndDateInput(event.target.value);
     };
 
-    const { events, handleEventsChange, totalPages, clearFilters } = useEvents(currentPage, currentNameFilter, currentStatusFilter, currentLocationFilter, currentStartDateFilter, currentEndDateFilter);
+    const { events, handleEventsChange, totalPages, clearFilters } = useEvents({ page: currentPage, nameFilter: currentNameFilter, statusFilter: currentStatusFilter, locationFilter: currentLocationFilter, startDateFilter: currentStartDateFilter, endDateFilter: currentEndDateFilter });
 
     const {
         isDeleteModalShow,

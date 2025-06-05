@@ -19,6 +19,7 @@ const Navigation = () => {
 
                         <Dropdown.Menu>
                             <Dropdown.Item as={Link} to="/admin/events">Мероприятия</Dropdown.Item>
+                            <Dropdown.Item as={Link} to="/admin/invitations">Приглашения</Dropdown.Item>
                             <Dropdown.Item as={Link} to="/admin/faculties">Факультеты</Dropdown.Item>
                             <Dropdown.Item as={Link} to="/admin/groups">Группы</Dropdown.Item>
                             <Dropdown.Item as={Link} to="/admin/locations">Помещения</Dropdown.Item>
