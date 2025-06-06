@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import EventsApiService from '../service/EventsApiService';
 
-const useEvents = ({ page, nameFilter, statusFilter, locationFilter, startDateFilter, endDateFilter, expand }) => {
+const useEvents = ({ page, nameFilter, statusFilter, locationFilter, startDateFilter, endDateFilter, noArgs = false }) => {
     const [events, setEvents] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [eventsRefresh, setEventsRefresh] = useState(false);
@@ -9,8 +9,8 @@ const useEvents = ({ page, nameFilter, statusFilter, locationFilter, startDateFi
     const clearFilters = () => {nameFilter, statusFilter, locationFilter, startDateFilter, endDateFilter = null;}
 
     const getEvents = async () => {
-        if (expand) {
-            const data = await EventsApiService.getAll(expand);
+        if (noArgs) {
+            const data = await EventsApiService.getAllNoArgs();
             setEvents(data ?? []);
         }
         else {

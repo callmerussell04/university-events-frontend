@@ -15,7 +15,7 @@ import usePagination from '../../pagination/PaginationHook.js';
 const Groups = () => {
     const {currentPage, handlePageChange} = usePagination();
 
-    const { groups, handleGroupsChange, totalPages } = useGroups(currentPage);
+    const { groups, handleGroupsChange, totalPages } = useGroups({ page: currentPage });
 
     const {
         isDeleteModalShow,

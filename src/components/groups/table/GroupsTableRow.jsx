@@ -13,6 +13,7 @@ const GroupsTableRow = ({
         <tr>
             <th scope="row">{index + 1}</th>
             <td>{group.name}</td>
+            <td>{group.course}</td>
             <td>{group.facultyName}</td>
             <td><a href="#" onClick={(event) => handleAnchorClick(event, onEdit)}><PencilFill /></a></td>
             <td><a href="#" onClick={(event) => handleAnchorClick(event, onDelete)}><Trash3 /></a></td>

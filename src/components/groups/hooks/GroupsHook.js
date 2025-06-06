@@ -1,17 +1,23 @@
 import { useEffect, useState } from 'react';
 import GroupsApiService from '../service/GroupsApiService';
 
-const useGroups = (page) => {
+const useGroups = ({ page, noPaging = false }) => {
     const [groups, setGroups] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [groupsRefresh, setGroupsRefresh] = useState(false);
     const handleGroupsChange = () => setGroupsRefresh(!groupsRefresh);
 
     const getGroups = async () => {
-        let expand = `?page=${page}`;
-        const data = await GroupsApiService.getAll(expand);
-        setGroups(data.items ?? []);
-        setTotalPages(data.totalPages ?? 0);
+        if (noPaging) {
+            const data = await GroupsApiService.getAllNoPages();
+            setGroups(data ?? []);
+        }
+        else {
+            let expand = `?page=${page}`;
+            const data = await GroupsApiService.getAll(expand);
+            setGroups(data.items ?? []);
+            setTotalPages(data.totalPages ?? 0);
+        }
     };
 
     useEffect(() => {

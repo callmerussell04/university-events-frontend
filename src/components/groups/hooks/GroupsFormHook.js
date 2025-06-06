@@ -16,9 +16,11 @@ const useGroupsForm = (id, groupsChangeHandle) => {
 
     const getGroupObject = (formData) => {
         const name = formData.name;
+        const course = parseInt(formData.course, 10);
         const facultyId = parseInt(formData.facultyId, 10);
         return {
             name: name,
+            course: course,
             facultyId: facultyId
         };
     };

@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import UsersApiService from '../service/UsersApiService';
 
-const useUsers = ({ page, role, expand }) => {
+const useUsers = ({ page, role, noPaging = false }) => {
     const [users, setUsers] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [usersRefresh, setUsersRefresh] = useState(false);
     const handleUsersChange = () => setUsersRefresh(!usersRefresh);
 
     const getUsers = async () => {
-        if (expand) {
-            const data = await UsersApiService.getAll(expand);
+        if (noPaging) {
+            let expand = ``;
+            if (role) expand = `?role=${role}`;
+            const data = await UsersApiService.getAllNoPages(expand);
             setUsers(data ?? []);
         }
         else {

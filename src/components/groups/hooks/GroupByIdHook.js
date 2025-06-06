@@ -5,6 +5,7 @@ const useGroup = (id) => {
     const emptyGroup = {
         id: '',
         name: '',
+        course: '',
         facultyId: ''
     };
     

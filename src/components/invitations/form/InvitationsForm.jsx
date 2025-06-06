@@ -5,8 +5,8 @@ import useUsers from '../../users/hooks/UsersHook.js';
 import useEvents from '../../events/hooks/EventsHook.js';
 
 const InvitationsForm = ({ invitation, handleChange }) => {
-    const { users } = useUsers({role: "Студент"});
-    const { events } = useEvents({expand: "/no-args"});
+    const { users } = useUsers({role: "Студент", noPaging: true});
+    const { events } = useEvents({noArgs: true});
     const statuses = ["Посетил", "Не посетил"];
 
     return (

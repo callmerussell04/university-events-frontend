@@ -8,6 +8,7 @@ const GroupsTable = ({ children }) => {
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Название группы</th>
+                    <th scope="col">Курс</th>
                     <th scope="col">Факультет</th>
                     <th scope="col" />
                     <th scope="col" />
