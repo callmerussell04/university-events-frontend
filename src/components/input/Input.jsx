@@ -6,7 +6,7 @@ const Input = ({
 }) => {
     return (
         <Form.Group className={`mb-2 ${className || ''}`} controlId={name}>
-            <Form.Label>{label}</Form.Label>
+            <Form.Label className="fw-bold mb-2">{label}</Form.Label>
             <Form.Control name={name || ''} value={value || ''} onChange={onChange} {...rest} />
         </Form.Group>
     );

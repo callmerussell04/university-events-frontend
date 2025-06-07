@@ -11,7 +11,7 @@ const Navigation = () => {
                 <Nav className="me-auto">
                     <Nav.Link as={Link} to="/">Главная</Nav.Link>
                     <Nav.Link as={Link} to="/">Мероприятия</Nav.Link>
-                    <Nav.Link as={Link} to="/">Профиль</Nav.Link>
+                    <Nav.Link as={Link} to="/profile">Профиль</Nav.Link>
                     <Dropdown>
                         <Dropdown.Toggle variant="success" id="dropdown-basic">
                             Админ панель

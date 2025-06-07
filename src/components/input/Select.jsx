@@ -6,7 +6,7 @@ const Select = ({
 }) => {
     return (
         <Form.Group className={`mb-2 ${className || ''}`} controlId={name}>
-            <Form.Label className='form-label'>{label}</Form.Label>
+            <Form.Label className='fw-bold mb-2'>{label}</Form.Label>
             <Form.Select name={name || ''} value={value || ''} onChange={onChange} {...rest}>
                 <option value=''>Выберите значение</option>
                 {

@@ -11,6 +11,8 @@ import FacultiesPage from './pages/FacultiesPage.jsx';
 import GroupsPage from './pages/GroupsPage.jsx';
 import LocationsPage from './pages/LocationsPage.jsx';
 import InvitationsPage from './pages/InvitationsPage.jsx';
+import SurveysPage from './pages/SurveysPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
 
 const routes = [
   {
@@ -37,6 +39,14 @@ const routes = [
   {
     path: '/admin/locations',
     element: <LocationsPage />
+  },
+  {
+    path: '/profile/survey',
+    element: <SurveysPage />
+  },
+  {
+    path: '/profile',
+    element: <ProfilePage />
   },
 ];
 
