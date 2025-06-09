@@ -5,7 +5,7 @@ const ForgotUsernamePage = () => {
     return (
         <>
             <div className="container-lg table-responsive">
-                <h2 className="text-center display-6 my-4">Восстановление пароля</h2>
+                <h2 className="text-center display-6 my-4">Восстановление логина</h2>
                 <ForgotUsernameForm></ForgotUsernameForm>
             </div>
         </>

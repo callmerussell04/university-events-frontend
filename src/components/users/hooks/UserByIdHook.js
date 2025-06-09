@@ -5,7 +5,11 @@ const useUser = (id) => {
     const emptyUser = {
         id: '',
         name: '',
-        email: ''
+        email: '',
+        username: '',
+        phoneNumber: '',
+        role: '',
+        groupId: ''
     };
     
     const [user, setUser] = useState({ ...emptyUser });

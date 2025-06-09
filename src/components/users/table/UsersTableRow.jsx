@@ -14,6 +14,9 @@ const UsersTableRow = ({
             <th scope="row">{index + 1}</th>
             <td>{user.name}</td>
             <td>{user.email}</td>
+            <td>{user.username}</td>
+            <td>{user.phoneNumber}</td>
+            <td>{user.role}</td>
             <td><a href="#" onClick={(event) => handleAnchorClick(event, onEdit)}><PencilFill /></a></td>
             <td><a href="#" onClick={(event) => handleAnchorClick(event, onDelete)}><Trash3 /></a></td>
         </tr>

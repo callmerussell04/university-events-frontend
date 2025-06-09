@@ -17,9 +17,17 @@ const useUsersForm = (id, usersChangeHandle) => {
     const getUserObject = (formData) => {
         const name = formData.name;
         const email = formData.email;
+        const username = formData.username;
+        const phoneNumber = formData.phoneNumber;
+        const role = formData.role;
+        const groupId = parseInt(formData.groupId, 10);
         return {
             name: name,
-            email: email
+            email: email,
+            username: username,
+            phoneNumber: phoneNumber,
+            role: role,
+            groupId: groupId,
         };
     };
 

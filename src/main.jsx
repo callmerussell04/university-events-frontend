@@ -17,6 +17,7 @@ import LoginPage from './pages/LoginPage.jsx';
 import EventsStudentPage from './pages/EventsStudentPage.jsx';
 import ResetPasswordPage from './pages/ResetPasswordPage.jsx';
 import ForgotUsernamePage from './pages/ForgotUsernamePage.jsx';
+import UsersPage from './pages/UsersPage.jsx';
 
 const routes = [
   {
@@ -67,6 +68,10 @@ const routes = [
   {
     path: '/forgot-username',
     element: <ForgotUsernamePage />
+  },
+  {
+    path: '/admin/users',
+    element: <UsersPage />
   },
 ];
 
