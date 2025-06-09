@@ -31,7 +31,7 @@ function responseErrorHandler(error) {
 
 export const ApiClient = axios.create({
     baseURL: 'http://localhost:8080/api/1.0/',
-    timeout: '3000',
+    timeout: '10000',
     headers: {
         Accept: 'application/json',
     },

@@ -13,6 +13,7 @@ import LocationsPage from './pages/LocationsPage.jsx';
 import InvitationsPage from './pages/InvitationsPage.jsx';
 import SurveysPage from './pages/SurveysPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
 
 const routes = [
   {
@@ -47,6 +48,10 @@ const routes = [
   {
     path: '/profile',
     element: <ProfilePage />
+  },
+  {
+    path: '/login',
+    element: <LoginPage />
   },
 ];
 

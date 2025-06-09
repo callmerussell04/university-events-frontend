@@ -10,7 +10,7 @@ const CourseInvitationForm = ({ courseInvitation, handleChange }) => {
 
     return (
         <>
-            <Select values={faculties} name='facultyId' label='Группа' value={courseInvitation.facultyId} onChange={handleChange}
+            <Select values={faculties} name='facultyId' label='Факультет' value={courseInvitation.facultyId} onChange={handleChange}
                 required />
             <Input name='course' label='Курс' value={courseInvitation.course} onChange={handleChange}
                             type='number' min='1' max='6' step='1' required />

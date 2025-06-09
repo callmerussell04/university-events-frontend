@@ -7,7 +7,7 @@ class EventsApiServiceClass extends ApiService {
     }
 
     getAllNoArgs() {
-        return ApiClient.get(`${this.url}/no-args`);
+        return ApiClient.get(`${this.url}/no-args`, { headers: this.getAuthHeader() });
     }
 }
 

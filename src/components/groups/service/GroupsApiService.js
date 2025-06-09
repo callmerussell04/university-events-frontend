@@ -7,7 +7,7 @@ class GroupsApiServiceClass extends ApiService {
     }
 
     getAllNoPages() {
-        return ApiClient.get(`${this.url}/no-pages`);
+        return ApiClient.get(`${this.url}/no-pages`, { headers: this.getAuthHeader() });
     }
 }
 

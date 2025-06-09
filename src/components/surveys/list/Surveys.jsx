@@ -6,6 +6,7 @@ import TakeSurveyForm from '../form/TakeSurveyForm.jsx';
 import PropTypes from 'prop-types';
 import SurveysRow from './SurveysRow.jsx'
 import { useState } from 'react';
+import AuthApiService from '../../auth/service/AuthApiService.js';
 
 
 const Surveys = () => {
@@ -14,6 +15,8 @@ const Surveys = () => {
 
     const [answers, setAnswers] = useState([]);
 
+    const currentUserId = AuthApiService.getCurrentUser().id;
+
     const {
         isFormModalShow,
         isFormValidated,
@@ -21,7 +24,7 @@ const Surveys = () => {
         currentSurvey,
         handleFormSubmit,
         handleFormClose,
-    } = useTakeSurveyFormModal(handleSurveysChange, answers, 5, setAnswers); //TODO: заменить userId
+    } = useTakeSurveyFormModal(handleSurveysChange, answers, currentUserId, setAnswers); 
 
     const handleAnswerChange = ({ questionId, text = null, optionId = null }) => {
         setAnswers((prevAnswers) => {

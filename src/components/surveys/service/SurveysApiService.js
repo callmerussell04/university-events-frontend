@@ -7,7 +7,7 @@ class SurveysApiServiceClass extends ApiService {
     }
 
     takeSurvey(body) {
-        return ApiClient.post(`${this.url}/take-survey`, body);
+        return ApiClient.post(`${this.url}/take-survey`, body, { headers: this.getAuthHeader() });
     }
 }
 

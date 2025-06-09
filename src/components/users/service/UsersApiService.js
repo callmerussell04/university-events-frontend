@@ -7,7 +7,7 @@ class UsersApiServiceClass extends ApiService {
     }
 
     getAllNoPages(expand) {
-        return ApiClient.get(`${this.url}/no-pages${expand || ''}`);
+        return ApiClient.get(`${this.url}/no-pages${expand || ''}`, { headers: this.getAuthHeader() });
     }
 }
 

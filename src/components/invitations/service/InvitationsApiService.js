@@ -7,11 +7,11 @@ class InvitationsApiServiceClass extends ApiService {
     }
 
     inviteGroup(body) {
-        return ApiClient.post(`${this.url}/invite-group`, body);
+        return ApiClient.post(`${this.url}/invite-group`, body, { headers: this.getAuthHeader() });
     }
 
     inviteCourse(body) {
-        return ApiClient.post(`${this.url}/invite-course`, body);
+        return ApiClient.post(`${this.url}/invite-course`, body, { headers: this.getAuthHeader() });
     }
 }
 

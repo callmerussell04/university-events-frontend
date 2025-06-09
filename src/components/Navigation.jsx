@@ -1,7 +1,11 @@
 import { Container, Nav, Navbar, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+import { useAuth } from '../components/auth/AuthContext';
+
 const Navigation = () => {
+    const { user } = useAuth();
+    const userRole = user?.roles?.[0] ?? null;
 
     return (
         <header className="text-center">
@@ -12,9 +16,10 @@ const Navigation = () => {
                     <Nav.Link as={Link} to="/">Главная</Nav.Link>
                     <Nav.Link as={Link} to="/">Мероприятия</Nav.Link>
                     <Nav.Link as={Link} to="/profile">Профиль</Nav.Link>
+                    {(userRole === 'ROLE_ADMIN' || userRole === 'ROLE_EMPLOYEE') && (
                     <Dropdown>
                         <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            Админ панель
+                            Управление
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
@@ -25,6 +30,7 @@ const Navigation = () => {
                             <Dropdown.Item as={Link} to="/admin/locations">Помещения</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
+                    )}
                 </Nav>
                 </Container>
             </Navbar>
