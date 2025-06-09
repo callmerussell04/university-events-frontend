@@ -14,6 +14,7 @@ import InvitationsPage from './pages/InvitationsPage.jsx';
 import SurveysPage from './pages/SurveysPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
+import EventsStudentPage from './pages/EventsStudentPage.jsx';
 
 const routes = [
   {
@@ -52,6 +53,10 @@ const routes = [
   {
     path: '/login',
     element: <LoginPage />
+  },
+  {
+    path: '/events',
+    element: <EventsStudentPage />
   },
 ];
 

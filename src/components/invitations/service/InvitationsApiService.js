@@ -13,6 +13,9 @@ class InvitationsApiServiceClass extends ApiService {
     inviteCourse(body) {
         return ApiClient.post(`${this.url}/invite-course`, body, { headers: this.getAuthHeader() });
     }
+    getByUser(id, expand) {
+        return ApiClient.get(`${this.url}/by-user/${id}${expand || ''}`, { headers: this.getAuthHeader() });
+    }
 }
 
 const InvitationsApiService = new InvitationsApiServiceClass();

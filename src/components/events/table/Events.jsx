@@ -136,7 +136,7 @@ const Events = () => {
             </ModalForm>
             <ModalForm show={isStatsFormModalShow} validated={isStatsFormValidated}
                 onSubmit={handleStatsFormSubmit} onClose={handleStatsFormClose}
-                title='Редактирование'>
+                title='Выбор периода'>
                 <StatsForm statsDates={statsDates} handleChange={handleStatsFormChange} />
             </ModalForm>
         </>
