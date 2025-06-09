@@ -9,24 +9,32 @@ import AuthApiService from "../components/auth/service/AuthApiService";
 const EventStudentPage = () => {
     const {currentPage, handlePageChange} = usePagination();
 
-    const { invitations, totalPages } = useInvitations(currentPage, AuthApiService.getCurrentUser().id);
-
-    return (
-        <>
-            <div className="container-lg">
-                <h3>Мероприятия на которые вы приглашены</h3>
-                <EventsStudentTable>
-                    {
-                        invitations.map((invitation, index) =>
-                            <EventsStudentTableRow key={invitation.id}
-                                                        index={index} invitation={invitation}
-                                                    />)
-                    }
-                </EventsStudentTable>
-                <PaginationComponent totalPages={totalPages} currentPage={currentPage} handlePageChange={handlePageChange} />
-            </div>
-        </>
-    );
+    const { invitations, totalPages } = useInvitations(currentPage, AuthApiService.getCurrentUser().id)
+    if (invitations.length === 0)
+        return (
+            <>
+                <div className="container-lg">
+                    <h3>Вы не приглашены ни на одно мероприятие</h3>
+                </div>
+            </>
+        ); 
+    else
+        return (
+            <>
+                <div className="container-lg">
+                    <h3>Мероприятия на которые вы приглашены</h3>
+                    <EventsStudentTable>
+                        {
+                            invitations.map((invitation, index) =>
+                                <EventsStudentTableRow key={invitation.id}
+                                                            index={index} invitation={invitation}
+                                                        />)
+                        }
+                    </EventsStudentTable>
+                    <PaginationComponent totalPages={totalPages} currentPage={currentPage} handlePageChange={handlePageChange} />
+                </div>
+            </>
+        );
 };
 
 export default EventStudentPage;

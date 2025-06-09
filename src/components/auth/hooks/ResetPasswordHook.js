@@ -1,35 +1,39 @@
 import { useState } from 'react';
 import AuthApiService from '../service/AuthApiService';
 import { useNavigate } from "react-router-dom";
-import { useAuth } from '../AuthContext';
 
-const useLoginForm = () => {
-    const { setUser } = useAuth();
+const useResetPasswordForm = () => {
     const [validated, setValidated] = useState(false);
     const [correctLoginInfo, setCorrectLoginInfo] = useState(true);
     const [mfaNeeded, setMfaNeeded] = useState(false);
+    const [emailNeeded, setEmailNeeded] = useState(true);
     const [formData, setFormData] = useState({
-        username: '',
+        email: '',
+        otp: '',
         password: '',
-        otp: ''
+        passwordConfirm: '',
     });
+    const [resetToken, setResetToken] = useState('');
+
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         const form = event.currentTarget;
         event.preventDefault();
         event.stopPropagation();
-        if (form.checkValidity() !== false) {
+        if (form.checkValidity() !== false && formData.password === formData.passwordConfirm) {
             try {
-                const loggedInUser = await AuthApiService.login(formData);
-                if (loggedInUser.mfaRequired !== null && !loggedInUser.mfaRequired){
-                    setCorrectLoginInfo(true);
-                    navigate("/");
-                    setValidated(true);
-                    setUser(loggedInUser);
-                }
-                else if(loggedInUser.mfaRequired !== null && loggedInUser.mfaRequired) {
+                if (emailNeeded) {
+                    await AuthApiService.forgotPassword({email: formData.email});
+                    setEmailNeeded(false);
                     setMfaNeeded(true);
+                }
+                else if(mfaNeeded) {
+                    setResetToken(await AuthApiService.verifyOtpForReset({email: formData.email, otp: formData.otp}));
+                    setMfaNeeded(false);
+                } else {
+                    await AuthApiService.resetPassword({resetToken: resetToken, newPassword: formData.password});
+                    navigate("/login");
                 }
             } catch (error) {
                 setCorrectLoginInfo(false);
@@ -51,10 +55,11 @@ const useLoginForm = () => {
         formData,
         validated,
         correctLoginInfo,
+        emailNeeded,
         mfaNeeded,
         handleSubmit,
         handleChange
     };
 };
 
-export default useLoginForm;
+export default useResetPasswordForm;

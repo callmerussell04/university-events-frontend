@@ -15,6 +15,8 @@ import SurveysPage from './pages/SurveysPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import EventsStudentPage from './pages/EventsStudentPage.jsx';
+import ResetPasswordPage from './pages/ResetPasswordPage.jsx';
+import ForgotUsernamePage from './pages/ForgotUsernamePage.jsx';
 
 const routes = [
   {
@@ -57,6 +59,14 @@ const routes = [
   {
     path: '/events',
     element: <EventsStudentPage />
+  },
+  {
+    path: '/reset-password',
+    element: <ResetPasswordPage />
+  },
+  {
+    path: '/forgot-username',
+    element: <ForgotUsernamePage />
   },
 ];
 

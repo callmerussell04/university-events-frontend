@@ -16,6 +16,22 @@ class AuthApiServiceClass extends ApiService {
         });
     }
 
+    forgotPassword(body) {
+        return ApiClient.post(`${this.url}/forgot-password`, body)
+    }
+
+    verifyOtpForReset(body) {
+        return ApiClient.post(`${this.url}/verify-otp-for-reset`, body)
+    }
+
+    resetPassword(body) {
+        return ApiClient.post(`${this.url}/reset-password`, body)
+    }
+
+    forgotUsername(body) {
+        return ApiClient.post(`${this.url}/forgot-username`, body)
+    }
+
     logout() {
         localStorage.removeItem("user");
     }

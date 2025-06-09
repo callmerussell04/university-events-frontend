@@ -2,7 +2,7 @@ import { Button, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import useLoginForm from '../hooks/LoginHook';
 import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import AuthApiService from '../service/AuthApiService';
 
 
@@ -43,8 +43,10 @@ const LoginForm = () => {
                             value={formData.password} onChange={handleChange} />
                             <input className='mt-2' type="checkbox" onClick={() => setShowPassword(!showPassword)} /> Показать пароль
                     </Form.Group>
-                    <Button className="w-100 fw-bold mt-3" variant='primary' type='submit'>Войти</Button>
+                    <Button className="w-100 fw-bold my-3" variant='primary' type='submit'>Войти</Button>
                     {wrongLoginInfoWarning}
+                    <Link to='/reset-password'>Задать / восстановить пароль</Link> <br />
+                    <Link to='/forgot-username'>Получить / восстановить пароль</Link>
                 </Form>
             </>
         );
@@ -62,9 +64,6 @@ const LoginForm = () => {
                 </Form>
             </>
         );
-};
-LoginForm.propTypes = {
-    setNeedsRegistration: PropTypes.func
 };
 
 export default LoginForm;
