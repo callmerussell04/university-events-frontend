@@ -14,6 +14,8 @@ import Select from '../../input/Select.jsx';
 import usePagination from '../../pagination/PaginationHook.js';
 import { useState } from 'react';
 import Input from '../../input/Input.jsx';
+import useStatsForm from '../hooks/EventStatsHook.js';
+import StatsForm from '../form/StatsForm.jsx';
 
 
 const Events = () => {
@@ -68,6 +70,16 @@ const Events = () => {
 
     const resetSearchParams = useResetSearchParams();
 
+    const {
+        statsDates,
+        isStatsFormModalShow,
+        isStatsFormValidated,
+        showStatsFormModal,
+        handleStatsFormChange,
+        handleStatsFormSubmit,
+        handleStatsFormClose,
+    } = useStatsForm();
+
     return (
         <>
             <div className='d-flex'>
@@ -104,8 +116,13 @@ const Events = () => {
                 }
             </EventsTable>
             <div className="d-flex justify-content-center">
-                <Button variant='primary' className="fw-bold px-5 mb-5" onClick={() => showFormModal()}>
+                <Button variant='primary' className="fw-bold px-5 mb-3 mx-2" onClick={() => showFormModal()}>
                     Добавить мероприятие
+                </Button>
+            </div>
+            <div className='d-flex justify-content-end'>
+                <Button variant='outline-info' className="fw-bold px-5 mb-5" onClick={() => showStatsFormModal()}>
+                    Получить статистику за период
                 </Button>
             </div>
             <PaginationComponent totalPages={totalPages} currentPage={currentPage} handlePageChange={handlePageChange} />
@@ -116,6 +133,11 @@ const Events = () => {
                 onSubmit={handleFormSubmit} onClose={handleFormClose}
                 title='Редактирование'>
                 <EventsForm event={currentEvent} handleChange={handleEventChange} />
+            </ModalForm>
+            <ModalForm show={isStatsFormModalShow} validated={isStatsFormValidated}
+                onSubmit={handleStatsFormSubmit} onClose={handleStatsFormClose}
+                title='Редактирование'>
+                <StatsForm statsDates={statsDates} handleChange={handleStatsFormChange} />
             </ModalForm>
         </>
     );
