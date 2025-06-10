@@ -16,7 +16,7 @@ const useUsers = ({ page, role, noPaging = false }) => {
         }
         else {
             let expand = `?`;
-            if (page) expand = `page=${page}`;
+            if (page) expand = `${expand}page=${page}`;
             if (role) expand = `${expand}&role=${role}`;
             const data = await UsersApiService.getAll(expand);
             setUsers(data.items ?? []);

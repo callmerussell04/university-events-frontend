@@ -28,7 +28,7 @@ const EventsStudentTableRow = ({
             <td>{invitation.event.endDateTime}</td>
             <td>{invitation.event.organizer}</td>
             <td>{invitation.event.locationName}</td>
-            <td><div className='d-flex justify-content-center'><input type="checkbox" onChange={handleInvitationStatus} checked={invitationStatus} /></div></td>
+            <td>{(invitation.event.status === "В процессе" || invitation.event.status === "Завершено") && (<div className='d-flex justify-content-center'><input type="checkbox" onChange={handleInvitationStatus} checked={invitationStatus} /></div>)}</td>
         </tr>
     );
 };

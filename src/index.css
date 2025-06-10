@@ -1,0 +1,17 @@
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown button {
+    background: none !important;
+    border: none !important;
+    padding: 0.5rem 0.375rem !important;
+    color: rgba(255, 255, 255, 0.55) !important;
+}
+
+footer{
+    margin-top: auto;
+    background-color: lightgray;
+}

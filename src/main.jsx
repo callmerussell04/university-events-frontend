@@ -18,60 +18,98 @@ import EventsStudentPage from './pages/EventsStudentPage.jsx';
 import ResetPasswordPage from './pages/ResetPasswordPage.jsx';
 import ForgotUsernamePage from './pages/ForgotUsernamePage.jsx';
 import UsersPage from './pages/UsersPage.jsx';
+import ProtectedRoute from './components/auth/ProtectedRoute.jsx';
 
 const routes = [
   {
     index: true,
     path: '/',
-    element: <Homepage />
-  },
-  {
-    path: '/admin/events',
-    element: <EventAdminPage />
-  },
-  {
-    path: '/admin/invitations',
-    element: <InvitationsPage />
-  },
-  {
-    path: '/admin/faculties',
-    element: <FacultiesPage />
-  },
-  {
-    path: '/admin/groups',
-    element: <GroupsPage />
-  },
-  {
-    path: '/admin/locations',
-    element: <LocationsPage />
-  },
-  {
-    path: '/profile/survey',
-    element: <SurveysPage />
-  },
-  {
-    path: '/profile',
-    element: <ProfilePage />
+    element: <Homepage />,
   },
   {
     path: '/login',
-    element: <LoginPage />
-  },
-  {
-    path: '/events',
-    element: <EventsStudentPage />
+    element: <LoginPage />,
   },
   {
     path: '/reset-password',
-    element: <ResetPasswordPage />
+    element: <ResetPasswordPage />,
   },
   {
     path: '/forgot-username',
-    element: <ForgotUsernamePage />
+    element: <ForgotUsernamePage />,
+  },
+  // *** Защищенные маршруты начинаются здесь ***
+  {
+    path: '/admin/events',
+    element: (
+      <ProtectedRoute>
+        <EventAdminPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/admin/invitations',
+    element: (
+      <ProtectedRoute>
+        <InvitationsPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/admin/faculties',
+    element: (
+      <ProtectedRoute>
+        <FacultiesPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/admin/groups',
+    element: (
+      <ProtectedRoute>
+        <GroupsPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/admin/locations',
+    element: (
+      <ProtectedRoute>
+        <LocationsPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/profile/survey',
+    element: (
+      <ProtectedRoute>
+        <SurveysPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/profile',
+    element: (
+      <ProtectedRoute>
+        <ProfilePage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/events',
+    element: (
+      <ProtectedRoute>
+        <EventsStudentPage />
+      </ProtectedRoute>
+    ),
   },
   {
     path: '/admin/users',
-    element: <UsersPage />
+    element: (
+      <ProtectedRoute>
+        <UsersPage />
+      </ProtectedRoute>
+    ),
   },
 ];
 

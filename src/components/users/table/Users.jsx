@@ -10,12 +10,16 @@ import UsersForm from '../form/UsersForm.jsx';
 import PropTypes from 'prop-types';
 import PaginationComponent from '../../pagination/Pagination.jsx';
 import usePagination from '../../pagination/PaginationHook.js';
+import { useAuth } from '../../auth/AuthContext.jsx';
 
 
 const Users = () => {
+    const { user } = useAuth();
+    const userRole = user?.roles?.[0] ?? null;
+
     const {currentPage, handlePageChange} = usePagination();
 
-    const { users, handleUsersChange, totalPages } = useUsers(currentPage);
+    const { users, handleUsersChange, totalPages } = useUsers({page: currentPage, role: userRole === 'ROLE_EMPLOYEE' ? "Студент" : null});
 
     const {
         isDeleteModalShow,
@@ -40,18 +44,21 @@ const Users = () => {
                 {
                     users.map((user, index) =>
                         <UsersTableRow key={user.id}
-                            index={index} user={user}
+                            index={index} userObj={user}
                             onDelete={() => showDeleteModal(user.id)}
                             onEdit={() => showFormModal(user.id)}
                         />)
                 }
             </UsersTable>
+            {userRole === 'ROLE_ADMIN' && 
             <div className="d-flex justify-content-center">
                 <Button variant='primary' className="fw-bold px-5 mb-5" onClick={() => showFormModal()}>
                     Добавить пользователя
                 </Button>
-            </div>
+            </div>}
             <PaginationComponent totalPages={totalPages} currentPage={currentPage} handlePageChange={handlePageChange} />
+            {userRole === 'ROLE_ADMIN' && 
+            <>
             <ModalConfirm show={isDeleteModalShow}
                 onConfirm={handleDeleteConfirm} onClose={handleDeleteCancel}
                 title='Удаление' message='Удалить элемент?' />
@@ -60,6 +67,7 @@ const Users = () => {
                 title='Редактирование'>
                 <UsersForm user={currentUser} handleChange={handleUserChange} />
             </ModalForm>
+            </>}
         </>
     );
 };
