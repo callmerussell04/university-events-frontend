@@ -15,7 +15,7 @@ const useEvents = ({ page, nameFilter, statusFilter, locationFilter, startDateFi
         }
         else {
             let expand = `?`;
-            if (page) expand = `page=${page}`;
+            if (page) expand = `${expand}page=${page}`;
             if (nameFilter) {
                 expand = `${expand}&name=${nameFilter}`;
             }
