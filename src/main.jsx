@@ -19,6 +19,8 @@ import ResetPasswordPage from './pages/ResetPasswordPage.jsx';
 import ForgotUsernamePage from './pages/ForgotUsernamePage.jsx';
 import UsersPage from './pages/UsersPage.jsx';
 import ProtectedRoute from './components/auth/ProtectedRoute.jsx';
+import SupportTicketsPage from './pages/SupportTicketsPage.jsx';
+
 
 const routes = [
   {
@@ -108,6 +110,14 @@ const routes = [
     element: (
       <ProtectedRoute>
         <UsersPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/admin/support-tickets',
+    element: (
+      <ProtectedRoute>
+        <SupportTicketsPage />
       </ProtectedRoute>
     ),
   },

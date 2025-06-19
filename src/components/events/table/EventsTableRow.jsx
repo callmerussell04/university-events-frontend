@@ -18,7 +18,7 @@ const EventsTableRow = ({
             <td>{event.endDateTime}</td>
             <td>{event.organizer}</td>
             <td>{event.locationName}</td>
-            <td><a href="#" onClick={(event) => handleAnchorClick(event, onEdit)}><PencilFill /></a></td>
+            <td>{event.status !== "Завершено" && <a href="#" onClick={(event) => handleAnchorClick(event, onEdit)}><PencilFill /></a>}</td>
             <td><a href="#" onClick={(event) => handleAnchorClick(event, onDelete)}><Trash3 /></a></td>
         </tr>
     );

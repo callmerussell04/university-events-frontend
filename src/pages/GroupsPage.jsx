@@ -1,6 +1,6 @@
 import Groups from "../components/groups/table/Groups";
 
-const FacultyPage = () => {
+const GroupPage = () => {
     return (
         <>
             <div className="container-lg table-responsive">
@@ -11,4 +11,4 @@ const FacultyPage = () => {
     );
 };
 
-export default FacultyPage;
+export default GroupPage;

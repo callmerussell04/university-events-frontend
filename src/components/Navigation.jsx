@@ -41,6 +41,7 @@ const Navigation = () => {
                                 ) : (
                                     <Dropdown.Item as={Link} to="/admin/users">Cтуденты</Dropdown.Item>
                                 )}
+                                <Dropdown.Item as={Link} to="/admin/support-tickets">Тех-поддержка</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                         )}
